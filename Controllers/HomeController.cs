@@ -1,4 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
+using TodoList.Data;
+using TodoList.Models;
 
 namespace Todo.Controllers
 {
@@ -7,9 +9,12 @@ namespace Todo.Controllers
   {
     [HttpGet]
     [Route("/")]
-    public String Get()
+    public List<TodoModel> Get(
+       [FromServices] AppDbContext context
+
+        )
     {
-      return "Hello World!";
+      return context.Todos.ToList();
     }
   }
 }
